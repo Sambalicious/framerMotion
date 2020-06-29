@@ -31,7 +31,7 @@ const funcModal = (modal) =>{
 const Modal = ({showModal, setShowModal}) => {
     return (
         <div>
-            <AnimatePresence exitBeforeEnter onExitComplete={()=>setShowModal(false)}>
+            <AnimatePresence exitBeforeEnter >
                 {showModal && (
                     <motion.div className="backdrop"
                         variants={backDrop}
