@@ -14,6 +14,10 @@ const containerVariants={
       type:'spring',
       delay:1.5
     }
+  },
+  exit:{
+    x:'-100vw',
+    transition:{ease:'easeInOut'}
   }
 }
 
@@ -31,13 +35,30 @@ const nextVariants={
   }
 }
 
+const buttonVariant = {
+  hover:{
+    ////numbers in the array  represent keyframes. Note: this animation stops at the end of the array
+  // scale:[1,1.1,1,1.1,1,1.1,1],
+  //for infinity transitions, use yoyo
+    scale: 1.1,
+    transition:{
+      //yoyo: Infinity for never stop animation
+      //duration slows down the timing of animation
+      duration:0.3,
+      yoyo:Infinity
+    },
+    textShadow: '0px 0px 8px rgb(255, 255, 255)',
+    boxShadow: '0px 0px 8px rgb(255, 255, 255)',
+
+  }
+}
 const Base = ({ addBase, pizza }) => {
   const bases = ['Classic', 'Thin & Crispy', 'Thick Crust'];
-
+  
   return (
-    <motion.div className="base container"
+    <motion.div className="container base"
         variants={containerVariants}
-      
+        exit="exit"
     >
 
       <h3>Step 1: Choose Your Base</h3>
@@ -61,11 +82,8 @@ const Base = ({ addBase, pizza }) => {
         >
           <Link to="/toppings">
             <motion.button
-               whileHover={{
-                scale:1.1,
-                textShadow: '0px 0px 8px rgb(255, 255, 255)',
-                boxShadow: '0px 0px 8px rgb(255, 255, 255)'
-              }}
+              variants={buttonVariant}
+               whileHover='hover'
             >Next
             </motion.button>
           </Link>
